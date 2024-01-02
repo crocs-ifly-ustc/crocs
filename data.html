@@ -1,0 +1,143 @@
+<!DOCTYPE HTML>
+<!--
+	Arcana by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>ICDAR 2024 Competition on Handwritten Chemical Structure Image Recognition in Educational Scenario-Data</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Logo -->
+					<!-- <img src="images/isca.png" width="6%" height="6%" style="margin:0 77% 0 0;"> -->
+					<!-- <h1 style="font-size: 120%;  margin: -4% 0 -2% 0"><a href="index.html" id="logo">Multimodal Information
+							Based Speech Processing (MISP) Challenge 2023</a></h1> -->
+					<h1 style="font-size: 120%;  margin: -1% 0% -1% 0%;"><a href="index.html" id="logo">ICDAR 2024 Competition on<br> Handwritten Chemical Structure Image Recognition in Educational Scenario</a></h1> 	
+					<img src="images/ICDAR-Logo.png" width="12%"height="12%" style="float:right; position:relative; top:-120px; left:-20px">
+
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+								<li><a href="index.html">Home</a></li>
+								<li><a href="overview.html">Overview</a></li>
+								<li class="current"><a href="data.html">Data</a></li>
+								<li>
+									<a href="#">Task</a>
+									<ul>
+										<li><a href="task1_instructions.html">Instructions</a></li>										
+										<li><a href="task1_software.html">Baseline</a></li>
+						                <li><a href="task1_submission.html">Submission</a></li>
+									</ul>
+								</li>
+								<!-- <li>
+									<a href="#">Task3</a>
+									<ul>
+										<li><a href="task3_instructions.html">Instructions</a></li>
+										<li><a href="task3_data.html">Data</a></li>
+										<li><a href="task3_software.html">Software</a></li>
+										<li><a href="task3_submission.html">Submission</a></li>
+									</ul>
+								</li> -->
+								<li><a href="download.html">Registration</a></li>
+								
+								<!-- <li><a href="results.html">Results</a></li> -->
+								<!-- <li><a href="contact.html">Contact</a></li> -->
+							</ul>
+						</nav>
+
+				</div>
+
+			<!-- Main -->
+				<section class="wrapper style1">
+					<div class="container">
+						<p>The proposed handwritten dataset is named <strong>EDU-CHEMC</strong> and it consists of 52,987 handwritten molecular structure images collected in educational scenarios. These images were obtained using various devices such as cameras, scanners, and screens, and are labeled as native Chemfig strings. The key characteristics of this dataset are as follows:</p>
+						<!-- <p></br></p> -->
+						<h3 style="font-size: 120%;">Real-world Educational Scenarios</h3>
+						<p>The dataset includes handwritten molecular structures from primary and secondary education scenarios, which, to our knowledge, have never been made publicly available before. Additionally, a small proportion of the data comprises people copying and photographing <a href="https://www.ebi.ac.uk/chembl/">ChEMBL3</a> molecular structures, also under real settings.</p>
+
+						<h3 style="font-size: 120%;">Combination of Molecular Structures and Formulas</h3>
+						<p>In addition to isolated molecular structures, the dataset also includes instances where formulas are combined with molecular structures. This is demonstrated by organic reaction equations, as shown in Figure 1.</p>
+						<center>
+							<figure style="padding:0px;border:0px; margin:0px">
+							<img src="images/proposal_figure_3.png" alt="Schematic Diagram" style="width:70%;padding:0px;border:0" />
+							<figcaption><strong>Fig.1</strong>  Examples of images that contain mixture of molecular structures and regular formulas in our handwritten dataset.</figcaption>
+							</figure>
+						</center>
+						<br>
+
+						<h3 style="font-size: 120%;">Diversity in Writing Styles</h3>
+						<p>The dataset exhibits a variety of handwriting styles, encompassing variations in the utilization of abbreviations, Kekulé ring notations for benzene, as well as the presence or absence of hydrogen atoms. Notably, it also comprises instances of erroneous or nonexistent structures that violate chemical principles, as demonstrated in Figure 2, thereby emphasizing its potential application in educational correction and revision.</p>
+						<center>
+							<figure style="padding:0px;border:0px; margin:0px">
+							<img src="images/proposal_figure_4.png" alt="Schematic Diagram" style="width:70%;padding:0px;border:0" />
+							<figcaption><strong>Fig.2</strong>  Examples of images that encounter chemical errors in our handwritten dataset are shown in both (a) and (b). In these images, the chemical bond connections of the carbon atoms indicated by the red circle violate the valence principle.</figcaption>
+							</figure>
+						</center>
+						<br>
+
+						<h3 style="font-size: 120%;">Complex Molecular Structures</h3>
+						<p>The complexity of molecular structures in the dataset is quantified by the total number of atoms and bonds. Approximately 10% of the testing set comprises structures with a complexity level exceeding the most intricate examples in the training set, as illustrated in Figure 3.</p>
+						<center>
+							<figure style="padding:0px;border:0px; margin:0px">
+							<img src="images/proposal_figure_5.png" alt="Schematic Diagram" style="width:70%;padding:0px;border:0" />
+							<figcaption><strong>Fig.3</strong>  Complexity histogram of our handwritten dataset. It is evident from the histogram that our testing set comprises samples with complexity levels that have not been observed in the training set.</figcaption>
+							</figure>
+						</center>
+						<br>
+
+						<p>The data partitions of the EDU-CHEMC dataset are outlined as follows:</p>
+						<center>
+							<figure style="padding:0px;border:0px; margin:0px">
+							<img src="images/proposal_table_1.png" alt="Schematic Diagram" style="width:50%;padding:0px;border:0" />
+							</figure>
+						</center>
+
+						<h1 style="font-size: 150%;">Download</h1>
+						The training and development set has been released <a href="TODO">here</a>.
+					</div>
+					
+				</section>
+
+			<!-- Gigantic Heading -->
+
+			<!-- Footer -->
+				<div id="footer">
+					<!-- Copyright -->
+
+					<ul class="icons">
+						<!-- <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li> -->
+						<li><a href="TODO" class="icon brands fa-google-plus-g"><span class="label">Google+</span></a></li>
+					</ul>
+
+						<div class="copyright">
+							<ul class="menu">
+								<li>&copy; All rights reserved</li><li>E-mail: TODO</li>
+							</ul>
+						</div>
+
+				</div>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

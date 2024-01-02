@@ -1,0 +1,191 @@
+<!DOCTYPE HTML>
+<!--
+	Arcana by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>ICDAR 2024 Competition on Handwritten Chemical Structure Image Recognition in Educational Scenario-Overview</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Logo -->
+					<!-- <img src="images/isca.png" width="6%" height="6%" style="margin:0 77% 0 0;"> -->
+					<!-- <h1 style="font-size: 120%;  margin: -4% 0 -2% 0"><a href="index.html" id="logo">Multimodal Information
+							Based Speech Processing (MISP) Challenge 2023</a></h1> -->
+					<h1 style="font-size: 120%;  margin: -1% 0% -1% 0%;"><a href="index.html" id="logo">ICDAR 2024 Competition on<br> Handwritten Chemical Structure Image Recognition in Educational Scenario</a></h1> 	
+					<img src="images/ICDAR-Logo.png" width="12%"height="12%" style="float:right; position:relative; top:-120px; left:-20px">
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+								<li><a href="index.html">Home</a></li>
+
+								<li class="current"><a href="overview.html">Overview</a></li>
+								<li><a href="data.html">Data</a></li>
+								<li>
+									<a href="#">Task</a>
+									<ul>
+										<li><a href="task1_instructions.html">Instructions</a></li>										
+										<li><a href="task1_software.html">Baseline</a></li>
+						                <li><a href="task1_submission.html">Submission</a></li>
+									</ul>
+								</li>
+								<!-- <li>
+									<a href="#">Task3</a>
+									<ul>
+										<li><a href="task3_instructions.html">Instructions</a></li>
+										<li><a href="task3_data.html">Data</a></li>
+										<li><a href="task3_software.html">Software</a></li>
+										<li><a href="task3_submission.html">Submission</a></li>
+									</ul>
+								</li> -->
+								<li><a href="download.html">Registration</a></li>
+								
+								<!-- <li><a href="results.html">Results</a></li> -->
+							</ul>
+						</nav>
+
+				</div>
+
+			<!-- Main -->
+				<section class="wrapper style2">
+					<div class="container">
+						<div id="content">
+
+							<!-- Content -->
+
+								<article>
+									<header>
+										<h1 style="font-size: 150%;">Background</h1>
+                  					</header>
+									  <p>Recognition systems for chemical molecular structures have been widely utilized in various fields, including pharmaceutical research and development, human-computer interaction, biochemistry, and organic synthesis. These systems enable the gathering and organization of millions of chemical molecular structures from academic journals and patents spanning several decades, which improving effciency and convenience in analyzing drug molecular structures.</p>
+
+									  <p>In addition to this, the recognition of chemical structures also holds significant value in the field of education. For instance, by automatically recognizing handwritten chemical structures in students’ responses, we can develop applications for intelligent grading and analysis, helping children excel in the subject of chemistry. However, the academic community currently does not pay enough attention to the recognition of chemical structures in educational settings. Therefore, we are organizing this competition in the hope of promoting the development of this sub-field.</p>
+									  
+
+									  <p>The objective of the task of chemical structure recognition is to extract the molecular structural formula from the input image into a corresponding graph structure, where the key information includes atoms, chemical bonds, and their interconnections. In educational contexts, we desire that the graph structure reconstructed by the model maintains visual consistency with the image, avoiding abbreviations, omissions, or significant rotations. This is illustrated in Figure 1.</p>
+									
+									  <center>
+										<figure style="padding:0px;border:0px; margin:0px">
+										<img src="images/proposal_figure_1.png" alt="Schematic Diagram" style="width:70%;padding:0px;border:0" />
+										<figcaption><strong>Fig.1</strong>   Handwritten Chemical Structure Image Recognition in Educational Scenario</figcaption>
+										</figure>
+									 </center>
+									 <br>
+									
+									  <p>To support the training and evaluation of the aforementioned recognition task, we have provided a comprehensive dataset comprising 48,998 training set images, 999 validation set images and 2,992 testing set images. The images are annotated in the form of strings, but they can be converted into graph structures using the tools we provide, as shown in Figure 2. Participants are required to construct models that output in the specified format, either as strings or graphs. These outputs will then be assessed using our graph comparison tool to evaluate the performance metrics.</p>
+									  
+									  <center>
+										<figure style="padding:0px;border:0px; margin:0px">
+										<img src="images/proposal_figure_2.png" alt="Schematic Diagram" style="width:70%;padding:0px;border:0" />
+										<figcaption><strong>Fig.2</strong> Competition Evaluation Procedure</figcaption>
+										</figure>
+									 </center>
+
+									 <h1 style="font-size: 150%;">Rules</h1>
+									 <ul>
+										<li>Participants are not allowed to use additional real-world data. However, synthetic data can be used.</li>
+										<li>Participants are supposed to submit the technical report and source code (at least the code used in the inference stage).</li>
+										<li>Participants are not allowed to submit the baseline provided directly.</li>
+										<li>One participant is not allowed to join more than one team.</li>
+										<li><strong>Top three</strong> teams will be rewarded with money.</li>
+									</ul>
+						</div>
+					</div>
+				</section>
+				
+				
+
+
+			<!-- Footer -->
+				<div id="footer">
+<!-- 					<div class="container">
+						<div class="row">
+							<section class="col-3 col-6-narrower col-12-mobilep">
+								<h3>Links</h3>
+								<ul class="links">
+									<li><a href="#">Mattis et quis rutrum</a></li>
+									<li><a href="#">Suspendisse amet varius</a></li>
+									<li><a href="#">Sed et dapibus quis</a></li>
+									<li><a href="#">Rutrum accumsan dolor</a></li>
+									<li><a href="#">Mattis rutrum accumsan</a></li>
+									<li><a href="#">Suspendisse varius nibh</a></li>
+									<li><a href="#">Sed et dapibus mattis</a></li>
+								</ul>
+							</section>
+
+							<section class="col-3 col-6-narrower col-12-mobilep">
+								<h3>More Links to Stuff</h3>
+								<ul class="links">
+									<li><a href="#">Duis neque nisi dapibus</a></li>
+									<li><a href="#">Sed et dapibus quis</a></li>
+									<li><a href="#">Rutrum accumsan sed</a></li>
+									<li><a href="#">Mattis et sed accumsan</a></li>
+									<li><a href="#">Duis neque nisi sed</a></li>
+									<li><a href="#">Sed et dapibus quis</a></li>
+									<li><a href="#">Rutrum amet varius</a></li>
+								</ul>
+							</section>
+
+							<section class="col-6 col-12-narrower">
+								<h3>Get In Touch</h3>
+								<form>
+									<div class="row gtr-50">
+										<div class="col-6 col-12-mobilep">
+											<input type="text" name="name" id="name" placeholder="Name" />
+										</div>
+										<div class="col-6 col-12-mobilep">
+											<input type="email" name="email" id="email" placeholder="Email" />
+										</div>
+										<div class="col-12">
+											<textarea name="message" id="message" placeholder="Message" rows="5"></textarea>
+										</div>
+										<div class="col-12">
+											<ul class="actions">
+												<li><input type="submit" class="button alt" value="Send Message" /></li>
+											</ul>
+										</div>
+									</div>
+								</form>
+							</section>
+						</div>
+					</div> -->
+
+					<!-- Icons -->
+						<ul class="icons">
+							<!-- <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+							<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li> -->
+							<li><a href="TODO" class="icon brands fa-google-plus-g"><span class="label">Google+</span></a></li>
+						</ul>
+
+					<!-- Copyright -->
+						<div class="copyright">
+							<ul class="menu">
+								<li>&copy; All rights reserved</li><li>E-mail: TODO</li>
+							</ul>
+						</div>
+
+				</div>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
