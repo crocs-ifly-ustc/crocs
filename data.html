@@ -59,7 +59,8 @@
 			<!-- Main -->
 				<section class="wrapper style1">
 					<div class="container">
-						<p>The proposed handwritten dataset is named <strong>EDU-CHEMC</strong> and it consists of 60,974 handwritten molecular structure images collected in educational scenarios. These images were obtained using various devices such as cameras, scanners, and screens, and are labeled as native Chemfig strings. The key characteristics of this dataset are as follows:</p>
+						<h1 style="font-size: 150%;">Dataset Description</h1>
+						<p>The proposed handwritten dataset is named <strong>EDU-CHEMC</strong> and it consists of 60,974 handwritten molecular structure images collected in educational scenarios. These images were obtained using various devices such as cameras, scanners, and screens. The key characteristics of this dataset are as follows:</p>
 						<!-- <p></br></p> -->
 						<h3 style="font-size: 120%;">Real-world Educational Scenarios</h3>
 						<p>The dataset includes handwritten molecular structures from primary and secondary education scenarios, which, to our knowledge, have never been made publicly available before. Additionally, a small proportion of the data comprises people copying and photographing <a href="https://www.ebi.ac.uk/chembl/">ChEMBL</a> molecular structures, also under real settings.</p>
@@ -100,6 +101,16 @@
 							<img src="images/proposal_table_1.png" alt="Schematic Diagram" style="width:50%;padding:0px;border:0" />
 							</figure>
 						</center>
+						<h1 style="font-size: 150%;">Annotation</h1>
+						<p>The training set includes an annotation json file for each image, sharing the same filename. Each file consists of three components:</p>
+						<ul>
+							<li><strong>chemfig</strong></li>
+							<p>A raw, human-annotated Chemfig string that can be rendered with texlive using the chemfig package. Note that this string is purely for reference.</p>
+							<li><strong>ssml_normed</strong></li>
+							<p>A normed version of the Chemfig string, removing complex syntax and retaining only basic rules for ease of program parsing and readability. <strong>Participants must submit results in this format</strong>, and it is the only one supported by the Parsing Tool and Graph Matching Tool.</p>
+							<li><strong>ssml_sd</strong></li>
+							<p>The training target of our <a href="https://crocs-ifly-ustc.github.io/crocs/task1_software.html">baseline</a>. Compared to "ssml_normed", bond unit angles are quantified with step of 15 degree, while bond lengths are omitted as most are equal to 1. It's directly applicable to sequence-to-sequence model training. For additional information, refer to <a href="https://dl.acm.org/doi/10.1145/3581783.3612573">this paper</a>.</p>
+						</ul>
 					</div>
 					
 				</section>

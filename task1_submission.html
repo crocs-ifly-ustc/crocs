@@ -59,10 +59,17 @@
 			<!-- Main -->
 			<section class="wrapper style1">
 				<div class="container">
-					<header>
-						<h1 style="font-size: 150%;">Submission</h1>
-					</header>
-					<p>Participants are supposed to submit their results through <a href="https://codalab.lisn.upsaclay.fr/">codalab</a>, and more details will be released soon.</p>
+					<p>Participants are supposed to submit a text file through <a href="https://codalab.lisn.upsaclay.fr/">codalab</a>.</p>
+
+					<h1 style="font-size: 150%;">Format</h1>
+					<p>Your submission should be a text file containing the same number of lines as test samples. Each line should represent the result of one sample, formatted as follows:</p>
+					<p><strong>&lt;image_name&gt;\t&lt;result string&gt;</strong></p>
+					<p>For instance, for the image "valid_01035.jpg":</p>
+					<p><strong>valid_01035.jpg	 \chemfig { B r -[:315] ?[a] branch( -[:45] =[:330] -[:255] -[:180] ?[a,{-}] branch) } + N a O H \xrightarrow [ \triangle ] { H _ { 2 } O } \chemfig { O H -[:315] ?[a] branch( -[:15] =[:330] -[:255] -[:180] ?[a,{-}] branch) } + N a B r</strong></p>
+					<p>Here, "&lt;image_name&gt;" is the name of the test image and "&lt;result string&gt;" is the recognition result for this sample. Each "chemfig { &lt;content&gt; }" region represents a chemical structure with "&lt;content&gt;" adhering to <a href="./data.html">ssml-sd</a> syntax rules. Outside of chemfig regions, the remainder of the recognition result must comply with latex syntax. Please ensure all latex string units are separated by spaces for clarity, e.g., "\xrightarrow [ \triangle ] { H _ { 2 } O }" is preferable to "\xrightarrow[\triangle]{H_{2}O}"</p>
+
+					<h1 style="font-size: 150%;">Submission</h1>
+
 				</div>
 			</section>
 
