@@ -111,6 +111,79 @@
 							<li><strong>ssml_sd</strong></li>
 							<p>The training target of our <a href="https://crocs-ifly-ustc.github.io/crocs/task1_software.html">baseline</a>. Compared to "ssml_normed", bond unit angles are quantified with step of 15 degree, while bond lengths are omitted as most are equal to 1. It's directly applicable to sequence-to-sequence model training. For additional information, refer to <a href="https://dl.acm.org/doi/10.1145/3581783.3612573">this paper</a>.</p>
 						</ul>
+
+						<h1 style="font-size: 150%;">Guidance for SSML-Normed</h1>
+						<p>Here are some guidelines for SSML-Normed. For further reference, you can also refer to <a href="https://dl.acm.org/doi/10.1145/3581783.3612573">this paper</a>.</p>
+						<center>
+							<figure style="padding:0px;border:0px; margin:0px">
+							<img src="images/ssml_figure1.png" alt="Schematic Diagram" style="width:40%;padding:0px;border:0" />
+							<figcaption><strong>Fig.4</strong> A chemical structure represented by the ssml-normed string "\chemfig { O =[:0.0,1.0] ?[a] branch( -[:54.0,1.0] \Chemabove { N } { H } -[:342.0,1.0] branch( -[:270.0,1.0] branch( -[:198.0,1.0] \Chemabove { H } { N } ?[a,{-}] branch) =[:324.0,1.0] -[:24.0,1.0] ?[b] branch( -:[:24.0,0.85] \circle branch) branch( -[:78.0,1.0] -[:6.0,1.0] -[:294.0,1.0] S -[:222.0,1.0] ?[b,{-}] branch) branch) =[:36.0,1.0] O branch) }".</figcaption>
+							</figure>
+						</center>
+						<br>
+
+						<p>The ssml-normed string comprises four primary units: "Atom", "‘Bond", "Branch", and "Reconnection". Consider a chemical structure as a graph, where atoms signify nodes and bonds represent edges. Two atoms can connect via a bond, thus a chemical graph is essentially made up of atoms and bonds.</p>
+						<p>To derive an ssml-normed string from a chemical graph, follow these steps:</p>
+						<ul>
+							<li>Traverse the entire graph using depth-first search (DFS) and record the atoms and bonds in the order they were traversed.</li>
+							<li>Convert each atom or bond into string tokens. The rules will be discussed later.</li>
+							<li>Include branch tokens during traversing to represent multiple branches from an atom.</li>
+							<li>Incorporate reconnection marks to indicate reconnection bonds. The concept of reconnection will be clarified later.</li>
+							<li>After completing the traversal, concatenate all tokens to form the ssml-normed string.</li>
+						</ul>
+
+
+
+						<h3 style="font-size: 120%;">Atom</h3>
+						<p>Atoms appear at two endpoints of each bond. In an image, an atom's content may include several characters (like "OH", "C" in Fig.4) or no characters (like the atom on a benzene ring). Fig.5 gives an example of all atoms in a chemical structure image.</p>
+						<center>
+							<figure style="padding:0px;border:0px; margin:0px">
+							<img src="images/ssml_figure2.png" alt="Schematic Diagram" style="width:40%;padding:0px;border:0" />
+							<figcaption><strong>Fig.5</strong> A chemical structure image showcasing all atoms, highlighted with red circles.</figcaption>
+							</figure>
+						</center>
+						<br>
+						<p>To format an atom to string tokens, simply append all its characters to the output sequence. If the atom's content includes formulas, format it according to latex rules, such as "C H _ { 2 }". See Fig.6 for more examples of atom formatted results.</p>
+						<center>
+							<figure style="padding:0px;border:0px; margin:0px">
+							<img src="images/ssml_figure3.png" alt="Schematic Diagram" style="width:40%;padding:0px;border:0" />
+							<figcaption><strong>Fig.6</strong> Formatted results of atoms whose contents contain formulas.</figcaption>
+							</figure>
+						</center>
+						
+						<h3 style="font-size: 120%;">Bond</h3>
+						<p>Bonds are chemical bonds in an image. They should be formatted according to chemfig syntax rules in one of the following ways:</p>
+						<p><strong>&lt;bond_type&gt;[:&lt;angle&gt;,&lt;length&gt;]</strong></p>
+						<p><strong>&lt;bond_type&gt;[:&lt;angle&gt;]</strong></p>
+						<p>Note that a bond is always formatted into one string token.</p>
+						<p><strong>&lt;bond_type&gt;</strong>: Nine types are depicted in Fig.7.</p>
+						<center>
+							<figure style="padding:0px;border:0px; margin:0px">
+							<img src="images/ssml_figure4.png" alt="Schematic Diagram" style="width:40%;padding:0px;border:0" />
+							<figcaption><strong>Fig.7</strong> Types of bonds.</figcaption>
+							</figure>
+						</center>
+						<br>
+						<p><strong>&lt;angle&gt;</strong>: When two atoms A and B are connected by a bond C, and formatted in the order "A", "C", "B", the angle of bond C refers to the angle of a directed line segment from point A to B in a polar coordinate system. Angles increase counterclockwise and are relative to the horizontal.</p>
+						<center>
+							<figure style="padding:0px;border:0px; margin:0px">
+							<img src="images/ssml_figure5.png" alt="Schematic Diagram" style="width:30%;padding:0px;border:0" />
+							<figcaption><strong>Fig.8</strong> Angle Definition for Bonds.</figcaption>
+							</figure>
+						</center>
+						<br>
+						<p><strong>&lt;length&gt;</strong>: This is the relative bond length. The default value is 1. Generally, all bonds in a chemical structure have the same length so we can set all bond’s relative length to 1. But if some bonds are noticeably shorter or longer, you can set their length to a value larger or smaller than 1 to maintain the correct structure.</p>
+
+						<h3 style="font-size: 120%;">Branch</h3>
+						<p>Branches occur during a DFS traversal of a graph when there's more than one unvisited bond attached to an atom, which can be chosen as next element to continue traversal. Each candidate bond represents a branch. Once a candidate bond is chosen,begin a branch with the special token "branch(" and format the chosen bond. Tokens following it are within the branch until no more bonds can be chosen. The branch ends with the token "branch)". If a visiting atom has N branches, only the content of the first N-1 branches being explored should be placed within a pair of branch tokens. It is optional whether the content of last branch being explored should be placed within branch tokens.</p>
+						<p>Fig.9 illustrates branch syntax rules. Here, Atom "C" has 3 branches explored in the order of branch1, branch3, and branch2. The ssml-normed string is displayed at the bottom.</p>
+						<center>
+							<figure style="padding:0px;border:0px; margin:0px">
+							<img src="images/ssml_figure6.png" alt="Schematic Diagram" style="width:55%;padding:0px;border:0" />
+							<figcaption><strong>Fig.9</strong> An example of branch syntax rules.</figcaption>
+							</figure>
+						</center>
+
 					</div>
 					
 				</section>
