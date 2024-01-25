@@ -59,16 +59,17 @@
 			<!-- Main -->
 			<section class="wrapper style1">
 				<div class="container">
-					<p>Participants are supposed to submit a text file through <a href="https://codalab.lisn.upsaclay.fr/">codalab</a>.</p>
 
 					<h1 style="font-size: 150%;">Format</h1>
 					<p>Your submission should be a text file containing the same number of lines as test samples. Each line should represent the result of one sample, formatted as follows:</p>
 					<p><strong>&lt;image_name&gt;\t&lt;result string&gt;</strong></p>
 					<p>For instance, for the image "valid_01035.jpg":</p>
-					<p><strong>valid_01035.jpg	 \chemfig { ?[a] =[:60] -[:0] =[:300] branch( -[:210] O ?[a,{-}] branch) -[:315] C O O H } \xrightarrow { \triangle } \chemfig { ?[a] -[:60] -[:0] -[:300] -[:240] O -[:180] ?[a,{-}] } + C O _ { 2 } \uparrow + H _ { 2 } \uparrow</strong></p>
-					<p>Here, "&lt;image_name&gt;" is the name of the test image and "&lt;result string&gt;" is the recognition result for this sample. Each "chemfig { &lt;content&gt; }" region represents a chemical structure with "&lt;content&gt;" adhering to <a href="./data.html">ssml-normed</a> syntax rules. Outside of chemfig regions, the remainder of the recognition result must comply with latex syntax. Please ensure all latex string units are separated by spaces for clarity, e.g., "\xrightarrow [ \triangle ] { H _ { 2 } O }" is preferable to "\xrightarrow[\triangle]{H_{2}O}"</p>
+					<p><strong>valid_01035.jpg    \chemfig { ?[a] =[:60] -[:0] =[:300] branch( -[:210] O ?[a,{-}] branch) -[:315] C O O H } \xrightarrow { \triangle } \chemfig { ?[a] -[:60] -[:0] -[:300] -[:240] O -[:180] ?[a,{-}] } + C O _ { 2 } \uparrow + H _ { 2 } \uparrow</strong></p>
+					<p>Here,"\t" is a symbol for tab. "&lt;image_name&gt;" is the name of the test image and "&lt;result string&gt;" is the recognition result for this sample. Each "chemfig { &lt;content&gt; }" region represents a chemical structure with "&lt;content&gt;" adhering to <a href="./data.html">ssml-normed</a> syntax rules. Outside of chemfig regions, the remainder of the recognition result must comply with latex syntax. Please ensure all latex string units are separated by spaces for clarity, e.g., "\xrightarrow [ \triangle ] { H _ { 2 } O }" is preferable to "\xrightarrow[\triangle]{H_{2}O}"</p>
+					<p>Please note that while the submitted result must adhere to the ssml-normed and latex format, it is not necessary for participants to design their methods directly based on ssml-normed. We encourage participants to propose new methods using all the materials provided as long as the format of the submitted result is correct. To assist participants in checking the result format, we offer a <a href="https://github.com/crocs-ifly-ustc/GraphParsingTool.git">Parsing Tool</a> that can convert ssml-normed and ssml-sd strings into graphs, along with a visualization tool.</p>
 
 					<h1 style="font-size: 150%;">Submission</h1>
+					<p>Participants are supposed to submit a text file through <a href="https://codalab.lisn.upsaclay.fr/">codalab</a>. Further information will be provided shortly.</p>
 
 				</div>
 			</section>

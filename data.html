@@ -113,11 +113,11 @@
 						</ul>
 
 						<h1 style="font-size: 150%;">Guidance for SSML-Normed</h1>
-						<p>Here are some guidelines for SSML-Normed. For further reference, you can also refer to <a href="https://dl.acm.org/doi/10.1145/3581783.3612573">this paper</a>.</p>
+						<p>Here are some guidelines for SSML-Normed.</p>
 						<center>
 							<figure style="padding:0px;border:0px; margin:0px">
 							<img src="images/ssml_figure1.png" alt="Schematic Diagram" style="width:40%;padding:0px;border:0" />
-							<figcaption><strong>Fig.4</strong> A chemical structure represented by the ssml-normed string "\chemfig { O =[:0.0,1.0] ?[a] branch( -[:54.0,1.0] \Chemabove { N } { H } -[:342.0,1.0] branch( -[:270.0,1.0] branch( -[:198.0,1.0] \Chemabove { H } { N } ?[a,{-}] branch) =[:324.0,1.0] -[:24.0,1.0] ?[b] branch( -:[:24.0,0.85] \circle branch) branch( -[:78.0,1.0] -[:6.0,1.0] -[:294.0,1.0] S -[:222.0,1.0] ?[b,{-}] branch) branch) =[:36.0,1.0] O branch) }".</figcaption>
+							<figcaption><strong>Fig.4</strong> A chemical structure represented by the ssml-normed string "\chemfig { ?[a] =[:60.0,1.0] -[:0.0,1.0] =[:300.0,1.0] branch( -[:0.0,1.0] C branch( -[:0.0,1.0] O -[:0.0,1.0] ?[b] branch( -[:60.0,1.0] =[:0.0,1.0] -[:300.0,1.0] =[:240.0,1.0] -[:180.0,1.0] ?[b,{=}] branch) branch) =[:90.0,1.0] O branch) -[:240.0,1.0] branch( -[:280.0,1.0] O H branch) =[:180.0,1.0] ?[a,{-}] }".</figcaption>
 							</figure>
 						</center>
 						<br>
@@ -135,7 +135,7 @@
 
 
 						<h3 style="font-size: 120%;">Atom</h3>
-						<p>Atoms appear at two endpoints of each bond. In an image, an atom's content may include several characters (like "OH", "C" in Fig.4) or no characters (like the atom on a benzene ring). Fig.5 gives an example of all atoms in a chemical structure image.</p>
+						<p>Atoms appear at two endpoints of each bond. In an image, an atom's content may include several characters (like "OH", "C" in Figure 4) or no characters (like the atom on a benzene ring). Figure 5 gives an example of all atoms in a chemical structure image.</p>
 						<center>
 							<figure style="padding:0px;border:0px; margin:0px">
 							<img src="images/ssml_figure2.png" alt="Schematic Diagram" style="width:40%;padding:0px;border:0" />
@@ -143,7 +143,7 @@
 							</figure>
 						</center>
 						<br>
-						<p>To format an atom to string tokens, simply append all its characters to the output sequence. If the atom's content includes formulas, format it according to latex rules, such as "C H _ { 2 }". See Fig.6 for more examples of atom formatted results.</p>
+						<p>To format an atom to string tokens, simply append all its characters to the output sequence. If the atom's content includes formulas, format it according to latex rules, such as "C H _ { 2 }". See Figure 6 for more examples of atom formatted results.</p>
 						<center>
 							<figure style="padding:0px;border:0px; margin:0px">
 							<img src="images/ssml_figure3.png" alt="Schematic Diagram" style="width:40%;padding:0px;border:0" />
@@ -156,7 +156,7 @@
 						<p><strong>&lt;bond_type&gt;[:&lt;angle&gt;,&lt;length&gt;]</strong></p>
 						<p><strong>&lt;bond_type&gt;[:&lt;angle&gt;]</strong></p>
 						<p>Note that a bond is always formatted into one string token.</p>
-						<p><strong>&lt;bond_type&gt;</strong>: Nine types are depicted in Fig.7.</p>
+						<p><strong>&lt;bond_type&gt;</strong>: Nine types are depicted in Figure 7.</p>
 						<center>
 							<figure style="padding:0px;border:0px; margin:0px">
 							<img src="images/ssml_figure4.png" alt="Schematic Diagram" style="width:40%;padding:0px;border:0" />
@@ -176,11 +176,45 @@
 
 						<h3 style="font-size: 120%;">Branch</h3>
 						<p>Branches occur during a DFS traversal of a graph when there's more than one unvisited bond attached to an atom, which can be chosen as next element to continue traversal. Each candidate bond represents a branch. Once a candidate bond is chosen,begin a branch with the special token "branch(" and format the chosen bond. Tokens following it are within the branch until no more bonds can be chosen. The branch ends with the token "branch)". If a visiting atom has N branches, only the content of the first N-1 branches being explored should be placed within a pair of branch tokens. It is optional whether the content of last branch being explored should be placed within branch tokens.</p>
-						<p>Fig.9 illustrates branch syntax rules. Here, Atom "C" has 3 branches explored in the order of branch1, branch3, and branch2. The ssml-normed string is displayed at the bottom.</p>
+						<p>Figure 9 illustrates branch syntax rules. Here, Atom "C" has 3 branches explored in the order of branch1, branch3, and branch2. The ssml-normed string is displayed at the bottom.</p>
 						<center>
 							<figure style="padding:0px;border:0px; margin:0px">
 							<img src="images/ssml_figure6.png" alt="Schematic Diagram" style="width:55%;padding:0px;border:0" />
 							<figcaption><strong>Fig.9</strong> An example of branch syntax rules.</figcaption>
+							</figure>
+						</center>
+
+						<h3 style="font-size: 120%;">Reconnection</h3>
+						<p>Reconnection occurs during traversal when a currently visiting atom A is connected to a previously visited atom B at more than two timesteps before by a bond C. We define that there is a reconnection between atom A and atom B. Since atom B can not be visited twice, we use reconnection marks to represent the connection relationship between atom A and B instead of appending "A", "C", and "B" to the output sequence. </p>
+						<p>Reconnection marks are:</p>
+						<p>Reconnection start: <strong>?[&lt;name&gt;]</strong></p>
+						<p>Reconnection end: <strong>?[&lt;name&gt;,{&lt;bond_type&gt;}]</strong></p>
+						<p>&lt;name&gt; is a short string of English letters, while &lt;bond_type&gt;  indicates the bond connecting the atoms (see Figure 7). Reconnection marks are attached to atoms. A reconnection mark is placed after the tokens of a certain atom in the output sequence. Two atoms with same &lt;name&gt; are considered to reconnect with each other through a bond of type &lt;bond_type&gt;.</p>
+						<p>When reconnecting atom A and B, designate one as the start and the other as the end. The end marks must contain &lt;bond_type&gt; while the start cannot. An atom can be attached with multiple reconnection end marks but at most one reconnection start marks. It is recommended to choose the first visited one to be the reconnection start.</p>
+						<p>For directed bond types such as "&lt;", "&gt;", the reconnection bond's correct direction is from reconnection start atom to reconnection end atom. For example, "B ?[a]" and "A ?[a, {>}]" equals to "B >[:<angle>] A" in non-reconnection cases. Figure 10 provides a visual example.</p>
+						
+						<center>
+							<figure style="padding:0px;border:0px; margin:0px">
+							<img src="images/ssml_figure7.png" alt="Schematic Diagram" style="width:30%;padding:0px;border:0" />
+							<figcaption><strong>Fig.10</strong> An example of reconnection for directed bond.</figcaption>
+							</figure>
+						</center>
+
+						<h3 style="font-size: 120%;">Special Tokens</h3>
+						<p><strong>\circle</strong></p>
+						<p>We use "\circle" to denote the special atom (circle) in benzene. To indicate the connection between the circle and an arbitrary atom on the ring, we utilize a virtual bond with the type "-:". During submission, you only need to randomly select one atom on the ring to connect with the circle atom, as our graph matching tool will normalize this case.</p>
+						<center>
+							<figure style="padding:0px;border:0px; margin:0px">
+							<img src="images/ssml_figure8.png" alt="Schematic Diagram" style="width:40%;padding:0px;border:0" />
+							<figcaption><strong>Fig.11</strong> An example of \circle.</figcaption>
+							</figure>
+						</center>
+						<p><strong>\Chemabove</strong></p>
+						<p>"\Chemabove { a } { b }" means character "b" is positioned above the character "a". This syntax is commonly used to format some special atoms such as "NH", Refer to Figure 12 for an example.</p>
+						<center>
+							<figure style="padding:0px;border:0px; margin:0px">
+							<img src="images/ssml_figure9.png" alt="Schematic Diagram" style="width:30%;padding:0px;border:0" />
+							<figcaption><strong>Fig.12</strong> An example of \Chemabove.</figcaption>
 							</figure>
 						</center>
 

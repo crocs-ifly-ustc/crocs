@@ -66,7 +66,7 @@
 
 						<h1 style="font-size: 150%;">Evaluation Metrics</h1>
 						<h3 style="font-size: 120%;">Exact Match (EM)</h3>
-						<p>Similar to handwritten mathematical expression recognition tasks, we use the EM score as the primary evaluation criterion. Specifically, EM indicates a complete match between the predicted and labeled strings. For the Chemfig modeling approach, given the polysemous nature of the labels, we first convert both the labels and recognition strings into graphs and then determine if their graph forms match. Let <strong><i>T</i></strong> denote the number of samples and <strong><i>R</i></strong> denote the number of predicted results that match the labeled results, then EM can be calculated using the following formula: </p>
+						<p>Similar to handwritten mathematical expression recognition tasks, we use the EM score as the primary evaluation criterion. Specifically, EM indicates a complete match between the predicted and labeled strings. For the Chemfig modeling approach, given the polysemous nature of the labels, we first convert both the labels and recognition strings into graphs and then determine if their graph forms match with a <a href="https://github.com/crocs-ifly-ustc/GraphMatchingTool.git">Graph Matching Tool</a>. Let <strong><i>T</i></strong> denote the number of samples and <strong><i>R</i></strong> denote the number of predicted results that match the labeled results, then EM can be calculated using the following formula: </p>
 						<center>
 							<figure style="padding:0px;border:0px; margin:10px">
 							<img src="images/proposal_me_1.png" style="width:100px;padding:0px;border:0" />
@@ -82,10 +82,26 @@
 							</figure>
 						</center>
 						<p>Structure EM measures the model’s recognition performance for the molecular structures in the mixed-mode data exclusively.</p>
-
-						<h3 style="font-size: 120%;">Note</h3>
 						<p>In the ranking protocol of this competition, we initially compare the EM (Exact Match) metric. In cases where two teams have the same EM scores, the final ranking will be determined based on their respective Structure Exact Match (Structure EM) scores.</p>
 						
+						<h1 style="font-size: 150%;">Graph Matching Tool</h1>
+						<p>Here, we offer a brief introduction of the <a href="https://github.com/crocs-ifly-ustc/GraphMatchingTool.git">Graph Matching Tool</a>.</p>
+						<p>It firstly extract all chemfig regions of a recognition result or a label string. For tokens outside chemfig regions, it directly compare the result string and label string, and only exact match will be considered to be correct. For tokens inside a chemfig region, it parse the content inside this chemfig region to graph, and then use a <strong>heuristic method</strong> to judge whether the graphs of label and recognition result are matched.</p>
+						<p>The rules for graph matching are as follows:</p>
+						<ul>
+							<li>All atoms must be correctly recognized, meaning the tokens of all atoms should match the label.</li>
+							<li>Types of all bonds should be correctly recognized. </li>
+							<li>Bond angles do not need to be an exact match, but the deviation should not be too large. Angles are used to recover the structure and appearance from string tokens.</li>
+							<li>All connection relationship between atoms must be correctly recognized.</li>
+							<li>Overall, the structure and appearance of the recognition result's graph should match the label.</li>
+						</ul>
+						<p>Refer to Figure 1 for examples of graph matching results.</p>
+						<center>
+							<figure style="padding:0px;border:0px; margin:0px">
+							<img src="images/graphmatch.png" alt="Schematic Diagram" style="width:100%;padding:0px;border:0" />
+							<figcaption><strong>Fig.1</strong> Examples of graph matching results.</figcaption>
+							</figure>
+						</center>
 				</section>
 
 
